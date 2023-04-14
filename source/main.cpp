@@ -767,85 +767,6 @@ void parseWiki_mods(){
 	}
 }
 
-void saveJSON(){
-	nlohmann::json js;
-	for (int i = 0; i < itemCount; i++){
-		item item = items[i];
-		nlohmann::json j;
-		j["itemID"] = item.itemID;
-        j["itemProps1"] = item.itemProps1;
-        j["itemProps2"] = item.itemProps2;
-        j["itemCategory"] = item.itemCategory;
-        j["hitSoundType"] = item.hitSoundType;
-        j["name"] = item.name;
-        j["texture"] = item.texture;
-        j["textureHash"] = item.textureHash;
-        j["itemKind"] = item.itemKind;
-        j["val1"] = item.val1;
-        j["textureX"] = item.textureX;
-        j["textureY"] = item.textureY;
-        j["spreadType"] = item.spreadType;
-        j["isStripeyWallpaper"] = item.isStripeyWallpaper;
-        j["collisionType"] = item.collisionType;
-        j["breakHits"] = item.breakHits;
-        j["restoreTime"] = item.restoreTime;
-        j["clothingType"] = item.clothingType;
-        j["rarity"] = item.rarity;
-        j["maxAmount"] = item.maxAmount;
-        j["extraFile"] = item.extraFile;
-        j["extraFileHash"] = item.extraFileHash;
-        j["audioVolume"] = item.audioVolume;
-        j["petName"] = item.petName;
-        j["petPrefix"] = item.petPrefix;
-        j["petSuffix"] = item.petSuffix;
-        j["petAbility"] = item.petAbility;
-        j["seedBase"] = item.seedBase;
-        j["seedOverlay"] = item.seedOverlay;
-        j["treeBase"] = item.treeBase;
-        j["treeLeaves"] = item.treeLeaves;
-        j["seedColor"] = item.seedColor;
-        j["seedOverlayColor"] = item.seedOverlayColor;
-        j["growTime"] = item.growTime;
-        j["val2"] = item.val2;
-        j["isRayman"] = item.isRayman;
-        j["extraOptions"] = item.extraOptions;
-        j["texture2"] = item.texture2;
-        j["extraOptions2"] = item.extraOptions2;
-        j["punchOptions"] = item.punchOptions;
-        j["extraFieldUnk_4"] = item.extraFieldUnk_4;
-        j["value"] = item.value;
-        j["value2"] = item.value2;
-        j["unkValueShort1"] = item.unkValueShort1;
-        j["unkValueShort2"] = item.unkValueShort2;
-		j["newValue"] = item.newValue;
-		j["newValue1"] = item.newValue1;
-		j["newValue2"] = item.newValue2;
-		j["newValue3"] = item.newValue3;
-		j["newValue4"] = item.newValue4;
-		j["newValue5"] = item.newValue5;
-		j["newValue6"] = item.newValue6;
-		j["newValue7"] = item.newValue7;
-		j["newValue8"] = item.newValue8;
-		j["newValue9"] = item.newValue9;
-		j["newInt1"] = item.newInt1;
-		j["newInt2"] = item.newInt2;
-		j["canPlayerSit"] = item.canPlayerSit;
-		j["sitPlayerOffsetX"] = item.sitPlayerOffsetX;
-		j["sitPlayerOffsetY"] = item.sitPlayerOffsetY;
-		j["sitOverlayX"] = item.sitOverlayX;
-		j["sitOverlayY"] = item.sitOverlayY;
-		j["sitOverlayOffsetX"] = item.sitOverlayOffsetX;
-		j["sitOverlayOffsetY"] = item.sitOverlayOffsetY;
-		j["sitOverlayTexture"] = item.sitOverlayTexture;
-		j["description"] = item.description;
-		j["mods"] = item.mods;
-        js["items"].push_back(j);
-	}
-	ofstream o("items.json");
-	o << setw(4) << js << endl;
-	o.close();
-}
-
 void saveRecipes(){
 	{
 		ofstream o("splices.txt");
@@ -919,8 +840,6 @@ int main(){
     printf("Done parsing descriptions!\n");
     parseWiki_mods();
 	printf("Parsed mods\n");
-	saveJSON();
-	printf("Saved items.json!\n");
 	saveRecipes();
 	printf("Saved recipes!\n");
 	return 0;
