@@ -117,7 +117,7 @@ vector<CombineItem> combines;
 item* items = NULL;
 int itemCount = 0;
 
-void decode_itemsDat(){
+void decode_itemsDat(const string& path){
     printf("Decoding items.dat\n");
     std::ifstream file("items.dat", std::ios::binary | std::ios::ate);
     int size = file.tellg();
@@ -829,8 +829,14 @@ void saveRecipes(){
 	}
 }*/
 
-int main(){
-	decode_itemsDat();
+int main(int argc, char* argv[]) {
+    if (argc < 3) {
+        cout << "Usage: itemParser <path> <1/2>\n";
+        return 1;
+    }
+    string pathss = argv[1];
+	
+	decode_itemsDat(pathss);
 	doneParsing = 0;
     for (int i = 0; i < threadAmount; i++) {
         thread parse(parseWiki, i);
