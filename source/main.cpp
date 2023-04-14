@@ -119,7 +119,7 @@ int itemCount = 0;
 
 void decode_itemsDat(const string& path){
     printf("Decoding items.dat\n");
-    std::ifstream file("items.dat", std::ios::binary | std::ios::ate);
+    std::ifstream file(path, std::ios::binary | std::ios::ate);
     int size = file.tellg();
     if (size == -1) {
         cout << "Didn't find items.dat. Is it at right place?" << endl;
@@ -771,7 +771,7 @@ void saveRecipes(){
 	{
 		ofstream o("splices.txt");
 		//heading
-		o << "//Splice recipes (GTWiki parser by mar4ello6)\n//Format: itemID(result)|ingredient1|ingredient2\n";
+		o << "//Splice recipes (c) Syz-Bot 2023-202x\n//Format: itemID(result)|ingredient1|ingredient2\n";
 		for (auto& i : splices){
 			o << to_string(i.result) << "|" << to_string(i.item1) << "|" << to_string(i.item2) << "\n";
 		}
@@ -780,7 +780,7 @@ void saveRecipes(){
 	{
 		ofstream o("combines.txt");
 		//heading
-		o << "//Combine recipes (GTWiki parser by mar4ello6)\n//Format: itemID(result),count|ingredient1,count|ingredient2,count|ingredient3,count\n";
+		o << "//Combine recipes (c) Syz-Bot 2023-202x\n//Format: itemID(result),count|ingredient1,count|ingredient2,count|ingredient3,count\n";
 		for (auto& i : combines){
 			o << to_string(i.result.first) << "," << to_string(i.result.second) << "|" << to_string(i.item1.first) << "," << to_string(i.item1.second) << "|"
 			  << to_string(i.item2.first) << "," << to_string(i.item2.second) << "|" << to_string(i.item3.first) << "," << to_string(i.item3.second) << "\n";
@@ -830,8 +830,8 @@ void saveRecipes(){
 }*/
 
 int main(int argc, char* argv[]) {
-    if (argc < 3) {
-        cout << "Usage: itemParser <path> <1/2>\n";
+    if (argc < 2) {
+        cout << "Usage: itemParser <path>\n";
         return 1;
     }
     string pathss = argv[1];
@@ -848,5 +848,5 @@ int main(int argc, char* argv[]) {
 	printf("Parsed mods\n");
 	saveRecipes();
 	printf("Saved recipes!\n");
-	return 0;
+	exit(0);
 }
